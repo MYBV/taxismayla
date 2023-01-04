@@ -17,17 +17,13 @@ Procedure.calcular_total = async(viaje)=>{
     let total_min = parseInt((viaje.total_minutos * tarifas_min))
     let total_km  = parseInt((viaje.total_km * tarifas_km))
 
-    console.log('basico ',basico)
-    console.log('total_min ',total_min)
-    console.log('total_km ',total_km)
-
     let total_pago = (basico + total_min + total_km)
 
     return total_pago
 }
 //#############################################################################################
 Procedure.CrearTransaccion = async(pagometodo, referencia, monto)=>{
-    console.log('CrearTransaccionCrearTransaccionCrearTransaccionCrearTransaccion')
+    
     let body_tr = {
         "acceptance_token": pagometodo.accept,
         "amount_in_cents": monto,
@@ -68,7 +64,6 @@ Procedure.CrearTransaccion = async(pagometodo, referencia, monto)=>{
     let end_point = 'transactions'
 
     let resultado = await mihttp('POST', end_point, headers_tr, {}, JSON.stringify(body_tr))
-    console.log(resultado)
     return {id: resultado.body.data.id, status: resultado.body.data.status}
 }
 //#############################################################################################
@@ -90,7 +85,6 @@ Procedure.CrearMetodoPago = async(email, token_accept, token_tr)=>{
     let end_point = 'payment_sources'
 
     let resultado = await mihttp('POST', end_point, headers_tr, {}, JSON.stringify(obj_body))
-    console.log(resultado)
     return resultado.body.data.id
 }
 //#############################################################################################
@@ -98,7 +92,6 @@ Procedure.ObtenerMerchants = async()=>{
     
     let endpoint = `merchants/${process.env.pub_test}`
     let resultado = await mihttp('GET', endpoint)
-    console.log(resultado)
 
     if(resultado === false)
     {
@@ -111,7 +104,7 @@ Procedure.ObtenerMerchants = async()=>{
 }
 //#############################################################################################
 Procedure.TokenizarTarjeta = async()=>{
-    console.log('TokenizarTarjetaTokenizarTarjetaTokenizarTarjetaTokenizarTarjetaTokenizarTarjeta')
+    
     let body_tk = {
         "number": "4242424242424242",
         "cvc": "789",
@@ -129,7 +122,6 @@ Procedure.TokenizarTarjeta = async()=>{
     let endpoint = 'tokens/cards'
 
     let resultado = await mihttp('POST', endpoint, headers_tk, {}, JSON.stringify(body_tk))
-    console.log(resultado)
 
     if(resultado === false)
     {

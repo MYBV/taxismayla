@@ -93,7 +93,6 @@ ProcesarTransaccion.on("procesartransacion",async (id)=>{
         {
             let {calcular_total} = require('../procedures/transacciones')
             let total_pago = await calcular_total(viaje)
-            console.log('total_pago', total_pago)
 
             let {modificar_viaje} = require('../procedures/viajes')
             await modificar_viaje({total_pago: total_pago}, id)
@@ -120,8 +119,6 @@ ProcesarTransaccion.on("procesartransacion",async (id)=>{
 
                 obj_tr.id_transaccion = transanccion_pago.id
                 obj_tr.status         = transanccion_pago.status
-                console.log('para crear transacciones')
-                console.log(obj_tr)
 
                 let Transacciones = require('../models').transacciones
                 await Transacciones.create(obj_tr);
@@ -158,11 +155,9 @@ CrearMediosPagos.on("crearmediospagos",async (id)=>{
 
                 let {ObtenerMerchants} = require('../procedures/transacciones')
                 obj_metodo.accept = await ObtenerMerchants()
-                console.log('token_aceptacion ',obj_metodo.accept)
     
                 let {TokenizarTarjeta} = require('../procedures/transacciones')
                 obj_metodo.token = await TokenizarTarjeta()
-                console.log('token_tarjeta ',obj_metodo.token)
     
                 let {CrearMetodoPago} = require('../procedures/transacciones')
                 obj_metodo.id_metodo = await CrearMetodoPago(email, obj_metodo.accept, obj_metodo.token)

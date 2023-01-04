@@ -25,6 +25,7 @@ Procedure.index = async (session) => {
   viajes.longitud_origen,
   viajes.latitud_destino,
   viajes.longitud_destino,
+  viajes.estado,
   pasajeros.nombre AS pasajero_nombre,
   conductores.nombre AS conductor_nombre,
   vehiculos.placa 
@@ -145,7 +146,7 @@ Procedure.modificar_viaje = async(data, id)=>{
 }
 //#############################################################################################
 Procedure.culminar_viaje = async(data, id)=>{
-  console.log('culminar_viajeculminar_viajeculminar_viajeculminar_viaje')
+
   let status = 500;
   let mensaje = String();
 

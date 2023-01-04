@@ -17,7 +17,7 @@ let consultahttp =  async (method,endpoint,headers={},form={},data=String())=>{
         
         if(Object.keys(form).length > 0)options.form = form
         if(data.length > 0)options.body = data
-        console.log(options)
+
         request(options,(error, response, body)=> {
             if (!error) 
             {
@@ -27,14 +27,11 @@ let consultahttp =  async (method,endpoint,headers={},form={},data=String())=>{
                 } 
                 catch (error) 
                 {
-                    console.log('error')
-                    console.log(error)
                     resolve(false)  
                 }
 
             }else 
             {
-                console.log(error)
                 resolve(false)
             }
         })

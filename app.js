@@ -101,6 +101,8 @@ async function inicio()
 
         let f_actual = CalendarDate.now().toFormat('yyyy-LL-dd HH:mm:ss')
         console.log(ColAviso,`===> ${process.env.Api_Nombre}, Funcionando ${f_actual} <===`)
+
+        module.exports =app;
     }
     else
     {

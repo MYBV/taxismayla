@@ -21,9 +21,6 @@ let login = async (req, res, next)=>{
     let login_usu  = req.body.data.substr(0,64)
     let passw_usu  = req.body.data.substr(64)
 
-    console.log(login_usu)
-    console.log(passw_usu)
-
     let {login} = require('../procedures/auth')
     let resultado = await login(login_usu, passw_usu)
 

@@ -7,6 +7,7 @@ const ConectSequelize = module.exports;
 
 //###################################################################################
 ConectSequelize.TestConect = async () => {
+
   const sequelize = new Sequelize(
     process.env.API_DATABASE,
     process.env.API_USUARIO,

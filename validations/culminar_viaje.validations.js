@@ -4,10 +4,9 @@ let Viajes = require("../models").viajes;
 
 //####################################################################################################
 module.exports = async(data, session)=>{
-    console.log('validationvalidationvalidationvalidationvalidation')
+    
     if(session.id_perfil != 3) return { statusCode: 400, bodyResponse: { msj: 'Debe ser pasajero para culminar viaje' } };
 
-    console.log(data)
     let fields = ["id", "fechahora_inicio", "latitud_origen", "longitud_origen"];
   	let condition = { id: data.id, estado: "ACTIVO"};
 
@@ -15,7 +14,7 @@ module.exports = async(data, session)=>{
         where: condition,
         attributes: fields,
     });
-    console.log(pasajero_trip)
+
     if(!pasajero_trip) 
         return { statusCode: 400, bodyResponse: { msj: 'Viaje no esta en curso' } };
     if(String(pasajero_trip.fechahora_inicio)== 'null')

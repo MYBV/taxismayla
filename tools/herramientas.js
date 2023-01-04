@@ -17,6 +17,7 @@ global.isjson = (json) => {
 };
 //##################################################################################################
 global.sleep = async function (segundos) {
+
   return new Promise((resolve) => {
     setTimeout(async () => {
       resolve(true);
